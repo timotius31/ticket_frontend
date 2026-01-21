@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'ZCOOL XiaoWei', serif;
+  /*background: #f7f4ef;*/
+  background: #f8f5f0;
+  color: #2c1d14;
+}
+
+
+h1, h2 {
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: #7a2d1d;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #1b0f0a;
+}
+
+.nav a {
+  color: #e8d8c3;
+  margin-left: 20px;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.nav-logo {
+  color: #e8d8c3;
+  font-weight: bold;
+}
+
+.slider img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.page {
+  padding: 40px;
+}
+
+.actor-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.actor-row img {
+  width: 180px;
+  border-radius: 4px;
+}
+
+.ticket-category.vip {
+  background: #6a1e15;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.ticket-category.regular {
+  background: #5a554b;
+  color: #fff;
+  padding: 20px;
+}

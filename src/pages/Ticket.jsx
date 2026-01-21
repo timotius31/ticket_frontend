@@ -274,6 +274,44 @@ export default function Ticket() {
 
   const total = selected.reduce((sum, s) => sum + s.price, 0);
 
+  const checkout = async () => {
+  if (!selected.length) return;
+
+  try {
+    const res = await api.post('/checkout', {
+      seats: selected.map(s => s.seat_code)
+    });
+
+    if (!window.snap) {
+      alert('Midtrans Snap not loaded');
+      return;
+    }
+
+    window.snap.pay(res.data.token, {
+      onSuccess: function (result) {
+        alert('Payment success');
+        console.log(result);
+        setSelected([]);
+      },
+      onPending: function (result) {
+        alert('Waiting for payment');
+        console.log(result);
+      },
+      onError: function (result) {
+        alert('Payment failed');
+        console.log(result);
+      },
+      onClose: function () {
+        alert('Payment popup closed');
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.response?.data?.error || 'Checkout failed');
+  }
+};
+
+
   /* ========= FLOOR 1 ========= */
   const A = seats.filter(s => s.seat_code.startsWith('A'));
   const B = seats.filter(s => s.seat_code.startsWith('B'));
@@ -398,6 +436,7 @@ export default function Ticket() {
         )}
 
         <button
+          onClick={checkout}
           disabled={!selected.length}
           style={{
             padding: '10px 20px',
